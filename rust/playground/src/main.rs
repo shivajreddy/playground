@@ -23,7 +23,13 @@ impl Solution {
             }
 
             // Found a digit
-            if curr_char.is_digit(10) {}
+            if curr_char.is_digit(10) {
+                while idx < s.len() && s.chars().nth(idx).unwrap().is_digit(10) {
+                    let new_digit = s.chars().nth(idx).unwrap().to_digit(10).unwrap();
+                    curr = curr * new_digit;
+                    idx += 1;
+                }
+            }
         }
 
         -1
