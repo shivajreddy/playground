@@ -37,6 +37,30 @@ impl Solution {
                 }
                 idx -= 1;
 
+                // /* A bit more optimized operation block
+                match curr_operation {
+                    '+' => {
+                        res += curr as i32;
+                        prev = curr as i32;
+                    }
+                    '-' => {
+                        res -= curr as i32;
+                        prev = -(curr as i32);
+                    }
+                    '*' => {
+                        res = (res - prev) + (prev * curr as i32);
+                        prev = prev * curr as i32;
+                    }
+                    '/' => {
+                        res = (res - prev) + (prev / curr as i32);
+                        prev = prev / curr as i32;
+                    }
+                    _ => (),
+                }
+                curr = 0;
+                // */
+
+                /* This is a bit more descriptive that i wrote first
                 // Perform the operation && update the state
                 if curr_operation == '+' {
                     res += curr as i32;
@@ -63,6 +87,7 @@ impl Solution {
                     prev = prev / curr as i32;
                     curr = 0;
                 }
+                // */
             }
             // found an opearator
             else {
