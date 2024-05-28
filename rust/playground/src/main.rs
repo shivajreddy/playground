@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+#![allow(unused)]
 fn main() {}
 
 struct LRUCache {}
@@ -16,4 +18,3 @@ impl LRUCache {
 fn test_1() {
     let _ = LRUCache::new(10);
 }
-
