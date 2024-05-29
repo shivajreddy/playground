@@ -24,7 +24,7 @@ class Handler(FileSystemEventHandler):
     def on_modified(self, event):
         if event.src_path.endswith(".py"):
             os.system('cls' if os.name == 'nt' else 'clear')  # Clear the terminal
-            print(f"File modified: {event.src_path}")
+            # print(f"File modified: {event.src_path}")
             subprocess.run(["python", "main.py"])
 
 if __name__ == '__main__':
