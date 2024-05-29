@@ -40,8 +40,47 @@ class DoublyLinkedList:
 
 fn main() {}
 
+struct Node {
+    key: i32,
+    val: i32,
+    next: Option<Box<Node>>,
+    prev: Option<Box<Node>>,
+}
+impl Node {
+    fn new(key: i32, val: i32, next: Option<Box<Node>>, prev: Option<Box<Node>>) -> Self {
+        Node {
+            key,
+            val,
+            next,
+            prev,
+        }
+    }
+}
+
+struct DoublyLinkedList {
+    size: u32,
+    head: Box<Node>,
+    tail: Box<Node>,
+}
+
+impl DoublyLinkedList {
+    fn new() -> Self {
+        let mut head = Box::new(Node::new(-1, -1));
+
+        let mut dll = DoublyLinkedList {
+            size: 0,
+            head: Node::new(-1, -1, None, None),
+            tail: Node::new(-1, -1, None, None),
+        };
+        dll.head.next = Some(Box::new(dll.tail));
+        dll.tail.prev = Some(Box::new(dll.head));
+        dll
+    }
+}
+
 struct LRUCache {}
 
+#[allow(unused)]
 impl LRUCache {
     fn new(capacity: i32) -> Self {
         LRUCache {}
