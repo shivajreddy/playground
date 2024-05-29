@@ -56,3 +56,6 @@ get(d)
 c(6) b(7) d(8)
 --------------
 '''
+
+class Node:
+    def __init__(self, key: int, val: int, next: 'Node | None', prev: '') -> None:
