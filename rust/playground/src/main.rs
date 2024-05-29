@@ -16,4 +16,3 @@ impl LRUCache {
 fn test_1() {
     let _ = LRUCache::new(10);
 }
-
