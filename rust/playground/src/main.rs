@@ -99,26 +99,12 @@ impl DoublyLinkedList {
             next: None,
             prev: None,
         };
-        if let node = self.head {
-            node.next = Some(Box::new(self.tail));
-        };
-        // if let tail = self.tail {
-        //     tail.prev = Some(Box::new(self.head));
-        // }
-        // DoublyLinkedList {
-        //      size: 0,
-        //      head: Node {
-        //          key: -1,
-        //          val: -1,
-        //          next: None,
-        //          prev: None,
-        //      },
-        //      tail: Node {
-        //          key: -1,
-        //          val: -1,
-        //          next: None,
-        //          prev: None,
-        //      },
-        //  }
+        self.head.next = Some(self.tail);
+        self.head.next = Some(Box::new(Node {
+            key: 1,
+            val: 1,
+            next: None,
+            prev: None,
+        }));
     }
 }
