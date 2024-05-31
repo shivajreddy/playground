@@ -31,4 +31,3 @@ if __name__ == '__main__':
     path_to_watch = "."  # Watch the current directory
     watcher = Watcher(path_to_watch)
     watcher.run()
-
