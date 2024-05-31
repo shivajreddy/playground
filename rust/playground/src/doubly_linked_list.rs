@@ -32,6 +32,8 @@ fn ll() {
         next: None,
     });
 
+    let x = RefCell::new(10);
+
     // 1 -> 2
     // n1.next = Some(Rc::clone(&n2));
     // n2.prev = Some(Rc::clone(&n1));
