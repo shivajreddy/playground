@@ -1,5 +1,7 @@
 #![allow(dead_code)]
 #![allow(unused)]
+
+use std::rc::Rc;
 fn main() {}
 
 struct LRUCache {}
@@ -74,8 +76,8 @@ fn test_1() {
 struct Node {
     key: i32,
     val: i32,
-    next: Option<Box<Node>>,
-    prev: Option<Box<Node>>,
+    next: Option<Rc<Node>>,
+    prev: Option<Rc<Node>>,
 }
 
 struct DoublyLinkedList {
@@ -90,21 +92,15 @@ impl DoublyLinkedList {
         self.head = Node {
             key: -1,
             val: -1,
-            next: None,
+            next: Some(Rc::new(self.tail)),
             prev: None,
         };
         self.tail = Node {
             key: -1,
             val: -1,
             next: None,
+            // prev: Some(Rc::new(self.head)),
             prev: None,
         };
-        self.head.next = Some(self.tail);
-        self.head.next = Some(Box::new(Node {
-            key: 1,
-            val: 1,
-            next: None,
-            prev: None,
-        }));
     }
 }
