@@ -4,47 +4,31 @@ use std::cell::RefCell;
 use std::rc::Rc;
 
 struct Node {
-    // key: i32,
     val: i32,
     prev: Option<Rc<Node>>,
     next: Option<Rc<Node>>,
 }
 
-fn ll() {
-    //  1 <-> 2 <-> 3
+fn main() {
+    //  1 <-> 2
     let mut n1 = Rc::new(Node {
         val: 1,
         prev: None,
         next: None,
+        // next: Some(Rc::clone(&n2)),
     });
 
     let mut n2 = Rc::new(Node {
         val: 1,
-        // prev: None,
         prev: Some(Rc::clone(&n1)),
         next: None,
-        // next: Some(Rc::clone(&n3)),
     });
-
-    let mut n3 = Rc::new(Node {
-        val: 1,
-        prev: None,
-        next: None,
-    });
-
-    let x = RefCell::new(10);
 
     // 1 -> 2
-    // n1.next = Some(Rc::clone(&n2));
-    // n2.prev = Some(Rc::clone(&n1));
+    n1.next = Some(Rc::clone(&n2));
 
-    // 1 <-> 2 -> 3
+    // 1 <-> 2
     // n2.prev = Some(Rc::clone(&n1));
-    // n2.prev = Some(Rc::new(n1));
-    // n2.next = Some(Rc::clone(&n3));
-
-    // 1 <-> 2 <-> 3
-    // n3.prev = Some(Rc::clone(&n2));
 }
 
 fn print_list(head: Node) {
