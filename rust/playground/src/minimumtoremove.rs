@@ -1,4 +1,3 @@
-
 /*
 struct Trie {}
 
@@ -11,7 +10,6 @@ impl Trie {
 */
 
 pub  fn main(){
-    println!("hi");
     println!("hi");
     // let obj = Trie::new();
     // let word = "something".to_string();
