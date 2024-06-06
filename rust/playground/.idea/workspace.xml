@@ -7,7 +7,10 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08c2890f-6ba0-4f96-adae-ee7f4cfde5e4" name="Changes" comment="" />
+    <list default="true" id="08c2890f-6ba0-4f96-adae-ee7f4cfde5e4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +35,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://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@github.com/shivajreddy/playground.git",
-    "accountId": "68544cb8-d47b-4d11-aefb-6d7a99cc7f69"
+    "accountId": "fe0adcd6-7b3f-4e91-917b-814798db066e"
   }
 }]]></component>
   <component name="MacroExpansionManager">
@@ -58,13 +61,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.rust.reset.selective.auto.import": "true",
     "git-widget-placeholder": "teclab",
+    "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "//wsl.localhost/Ubuntu/root/projects/playground/rust/playground",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
     "org.rust.first.attach.projects": "true",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+    "settings.editor.selected.configurable": "advanced.settings"
   }
 }]]></component>
   <component name="RunManager" selected="Cargo.Run playground">
@@ -115,7 +119,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717415887868</updated>
       <workItem from="1717415888921" duration="8266000" />
-      <workItem from="1717673046596" duration="489000" />
+      <workItem from="1717673046596" duration="3709000" />
     </task>
     <servers />
   </component>

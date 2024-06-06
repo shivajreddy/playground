@@ -11,6 +11,7 @@ struct Node {
 fn main() {
     let a  = Box::new(10);
     let b: Box<[i32; 3]> = Box::new([10, 20, 30]);
+    
     let c = b[2];
 
     println!("a={a} b ={b:?} c={c}");
