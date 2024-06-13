@@ -1,28 +1,34 @@
 #![allow(unused)]
 
+use std::cell::RefCell;
+use std::rc::Rc;
+
+#[derive(Debug)]
 struct Node {
     val: i32,
-    next: Option<Box<Node>>,
+    prev: Option<Rc<RefCell<Node>>>,
+    next: Option<Rc<RefCell<Node>>>,
 }
 
-struct Node2<'long> {
-    val: i32,
-    next: Option<&'long Node2<'long>>,
-}
+/*
+    - goal of interior mutability
+        - in the interior there is unsafe, and outer it is wrapped in a safe API
+*/
+
 
 fn main() {
-    // head -> n2 -> n3 -> None
-    let mut n1 = Node { val: 1, next: None };
-    let mut n2 = Node { val: 2, next: None };
-    let mut n3 = Node { val: 3, next: None };
+    let n1 = Rc::new(RefCell::new(Node { val: 1, prev: None, next: None }));
+    let n2 = Rc::new(RefCell::new(Node { val: 2, prev: None, next: None }));
 
-    n1.next = Some(Box::new(n2));
-    // n2.next = Some(Box::new(n3));
-
-    let mut n11 = Node2 { val: 1, next: None };
-    let mut n22 = Node2 { val: 2, next: None };
-    let mut n33 = Node2 { val: 3, next: None };
-
-    n11.next = Some(&n22);
-    n22.next = Some(&n33);
+    n1.borrow_mut().next = Some(Rc::clone(&n2));
+    n2.borrow_mut().val = 22;
+    n1.borrow_mut().next = Some(Rc::clone(&n2));
+    
+    
+    let mut s = "rat";
+    let mut t = "car";
+    
+    let 
+    
 }
+
