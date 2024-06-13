@@ -7,22 +7,7 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08c2890f-6ba0-4f96-adae-ee7f4cfde5e4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../.idea/playground.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../messenger/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../messenger/.idea/messenger.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../messenger/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../messenger/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../messenger/Cargo.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../messenger/Cargo.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../messenger/src/lib.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/trie.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
-    </list>
+    <list default="true" id="08c2890f-6ba0-4f96-adae-ee7f4cfde5e4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,9 +63,9 @@
     "Cargo.Run playground.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.rust.reset.selective.auto.import": "true",
-    "git-widget-placeholder": "Merging tars",
+    "git-widget-placeholder": "tars",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "//wsl.localhost/Ubuntu/root/projects/playground/rust/playground",
+    "last_opened_file_path": "//wsl.localhost/Ubuntu/home/shiva/projects/playground/rust/messenger",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
