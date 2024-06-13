@@ -1,14 +1,4 @@
-<<<<<<< HEAD
-mod doubly_linked_list;
-mod minimumtoremove;
-
-fn main() {
-    // doubly_linked_list::ll();
-    //minimumtoremove::main();
-}
-=======
 #![allow(unused)]
->>>>>>> teclab
 
 use std::cell::RefCell;
 use std::mem::{size_of, size_of_val};

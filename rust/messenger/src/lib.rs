@@ -1,5 +1,6 @@
 #![allow(unused)]
 
+<<<<<<< HEAD
 pub trait Messenger {
     fn send(&self, message: &str);
 }
@@ -32,15 +33,50 @@ impl<'a, T: Messenger> LimitTracker<'a, T> {
         }
     }
     
+=======
+trait Messenger {
+    fn send(&self, message: String);
+    // fn send(&self, message: &str);
+>>>>>>> 057e14deb78e6a13fe8ec7343081afb6ef788559
 }
 
 
 
+<<<<<<< HEAD
+=======
+struct LimitTracker<'a, T: Messenger> {
+    messenger: &'a T,       // lives as long as this type instance
+    max: usize,
+    value: usize,
+}
+
+impl<'a, T: Messenger> LimitTracker<'a, T> {
+    fn new(messenger: &'a T, max: usize) -> LimitTracker<'a, T> {
+        LimitTracker { messenger, value: 0, max}
+    }
+    
+    fn set_value(&mut self, value: usize) {
+        self.value = value;
+        let percent = self.value as f64 / self.max as f64;
+        if percent > 1.0 {
+            println!("OVER 100% : Banned");
+        } else if percent > 0.9 {
+            println!("OVER 90% : Soft Warning");
+        } else if percent > 0.7 {
+            println!("OVER 70% : Careful");
+        }
+    }
+}
+
+
+
+>>>>>>> 057e14deb78e6a13fe8ec7343081afb6ef788559
 #[cfg(test)]
 mod tests {
     use std::rc::Rc;
     use std::cell::RefCell;
     use super::*;
+<<<<<<< HEAD
     
     struct MockMessenger {
         // outbox: Vec<String>
@@ -72,5 +108,7 @@ mod tests {
         tracker.set_value(90);
         assert_eq!(mock_messenger.outbox.borrow().len(), 1);
     }
+=======
+>>>>>>> 057e14deb78e6a13fe8ec7343081afb6ef788559
 }
 
