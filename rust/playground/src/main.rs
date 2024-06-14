@@ -30,8 +30,4 @@ fn main() {
     println!("borrow2 {:?}", &borrow2);
     println!("borrow2 {:p}", &borrow2);
     println!("borrow2 {:p}", borrow2.deref());
-
-    // let inner = rc1.into_inner();
-    // println!("inner {:?}", &inner);
-    // println!("inner {:p}", &inner);
 }

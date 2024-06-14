@@ -8,7 +8,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08c2890f-6ba0-4f96-adae-ee7f4cfde5e4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../messenger/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../messenger/src/lib.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
