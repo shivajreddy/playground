@@ -1,12 +1,22 @@
-s = "123 +1234 *"
+import heapq
 
-curr = 0
+input = [9, 7, 1, 3, 2, -1, 3, 5]
+print(input)
 
-curr_num = 0
-while curr < len(s) - 1 and s[curr].isdigit():
-    curr_num = (curr_num * 10) + int(s[curr])
-    curr += 1
+arr = []
 
-print(curr_num)
+heapq.heapify(arr)
+
+
+for num in input:
+    heapq.heappush(arr, -num)
+
+
+print(arr)
+
+while arr:
+    n = heapq.heappop(arr)
+    print(-n)
+
 
 
