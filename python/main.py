@@ -19,4 +19,3 @@ while arr:
     print(-n)
 
 
-
