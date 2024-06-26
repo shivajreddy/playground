@@ -1,14 +1,15 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+#![allow(unused)]
+
+macro_rules! alias {
+    ($arg1: ident,  $arg2: ty) => {
+        type $arg1 = $arg2;
+    };
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+alias!(Shiva32, i32);
+type Shiv = i32;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+fn main() {
+    let x: Shiva32 = 10;
+    let x: Shiv = 10;
 }
