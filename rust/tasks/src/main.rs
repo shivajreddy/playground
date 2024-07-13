@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #[macro_use]
 extern crate rocket;
 use rocket::http::Status;
@@ -56,4 +57,8 @@ fn rocket() -> _ {
         .mount("/", routes![index])
         .mount("/test", routes![test])
         .mount("/tables", routes![get_all_table_names])
+=======
+fn main() {
+    println!("Hello, world!");
+>>>>>>> 0801959 (tasks repo for todo app with rust stack)
 }
