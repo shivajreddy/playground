@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #[macro_use]
 extern crate rocket;
 use rocket::http::Status;
@@ -45,10 +46,17 @@ fn get_all_table_names() -> Result<status::Custom<Json<Names>>, status::Custom<J
     let json_resp = Names { names };
     Ok(status::Custom(Status::ImATeapot, Json(json_resp)))
 }
+#[macro_use]
+extern crate rocket;
 
 #[get("/")]
 fn index() -> &'static str {
     "Hello There"
+}
+
+#[get("/")]
+fn all_tables() -> &'static str {
+    "All tables here"
 }
 
 #[launch]
@@ -57,8 +65,7 @@ fn rocket() -> _ {
         .mount("/", routes![index])
         .mount("/test", routes![test])
         .mount("/tables", routes![get_all_table_names])
-=======
 fn main() {
     println!("Hello, world!");
->>>>>>> 0801959 (tasks repo for todo app with rust stack)
+        .mount("/all", routes![all_tables])
 }
