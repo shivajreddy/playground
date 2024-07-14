@@ -1,13 +1,13 @@
-#![allow(unused)]
-
 #[macro_use]
 extern crate rocket;
-use rocket::response::content::RawJson;
-use rocket::serde::json::Json;
-use rocket::serde::{self, Serialize};
-
 use rocket::http::Status;
-use rocket::response::{content, status};
+use rocket::response::status;
+use rocket::serde::json::Json;
+use rocket::serde::Serialize;
+
+#[macro_use]
+extern crate rocket_contrib;
+use rocket_contrib::json::JsonValue;
 
 use rusqlite::{Connection, Result};
 
@@ -17,14 +17,16 @@ struct Names {
     names: Vec<String>,
 }
 
-#[get("/")]
-fn sql() -> &'static str {
-    sqlite();
-    "Success"
+#[get("/<name>/<age>")]
+fn test(name: &str, age: u8) -> Json<JsonValue> {
+    Json(json!({
+        "name" : name,
+        "age" : age
+    }))
 }
 
 #[get("/")]
-fn test() -> Result<status::Custom<Json<Names>>, status::Custom<Json<String>>> {
+fn get_all_table_names() -> Result<status::Custom<Json<Names>>, status::Custom<Json<String>>> {
     println!("conn Trying ◉");
     let conn = Connection::open("tasks.db")
         .map_err(|e| status::Custom(Status::InternalServerError, Json(e.to_string())))?;
@@ -48,38 +50,10 @@ fn index() -> &'static str {
     "Hello There"
 }
 
-fn sqlite() -> Result<()> {
-    println!("conn Trying ◉");
-
-    let conn = Connection::open("tasks.db").map_err(|e| {
-        eprintln!("{}", e);
-        e
-    })?;
-    println!("conn success ✅");
-
-    let mut stmt = conn.prepare("SELECT name FROM sqlite_master WHERE type='table';")?;
-    println!("stmt success ✅");
-
-    let table_names_res = stmt.query_map([], |row| row.get::<_, String>(0))?;
-    println!("tables_names success ✅");
-    println!("total {:?}", table_names_res.size_hint());
-
-    let mut names = vec![];
-
-    // Print the names of all tables
-    for table_name in table_names_res {
-        println!("{table_name:?}");
-        names.push(table_name);
-    }
-
-    Ok(())
-}
-
 #[launch]
 fn rocket() -> _ {
     rocket::build()
         .mount("/", routes![index])
-        // .mount("/all", routes![all_tables])
         .mount("/test", routes![test])
-        .mount("/sql", routes![sql])
+        .mount("/tables", routes![get_all_table_names])
 }
