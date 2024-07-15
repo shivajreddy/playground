@@ -1,37 +1,57 @@
 #![allow(unused)]
+/*
+use tokio::time::{sleep, Duration};
 
-use std::cell::RefCell;
-use std::mem::{size_of, size_of_val};
-use std::ops::Deref;
+async fn something() {
+    println!("Task 1: Starting");
+    sleep(Duration::from_secs(2)).await;
+    println!("Task 1: Finished");
+
+    println!("Task 2: Starting");
+    sleep(Duration::from_secs(2)).await;
+    println!("Task 2: Finished");
+}
+*/
 
 fn main() {
-    let b1 = Box::new(vec![10, 20, 30]);
+    assert_eq!(4, Solution::total_combinations(12, vec![2, 3, 7]));
+    assert_eq!(1, Solution::total_combinations(2, vec![2, 3, 7]));
+}
 
-    println!("b1_stack {:p}", b1);
-    println!("b1_val {:p}", std::ptr::addr_of!(b1));
-    println!("b1_val {:p}", &b1);
-    println!("b1_size {} bytes", size_of_val(&b1));
-    println!("b1_size {} bytes", size_of_val(b1.deref()));
+struct Solution {}
 
+impl Solution {
+    fn total_combinations(final_score: i32, scores: Vec<i32>) -> i32 {
+        let r = scores.len();
+        let c = final_score as usize;
 
-    let rc1 = RefCell::new(vec![10, 20, 30]);
+        // create a grid
+        let row = Vec::<i32>::with_capacity(c);
 
-    println!("rc1{:?}", rc1);
-    println!("rc1{:p}", &rc1);
-    println!("rc1_size {}", size_of_val(&rc1));
-    println!("RefCell.size {}", size_of::<RefCell<Vec<i32>>>());
+        let mut grid: Vec<Vec<i32>> = vec![];
+        for _ in (0..r) {
+            let mut row = vec![0; c + 1];
+            row[0] = 1;
+            grid.push(row);
+        }
+        // println!("{grid:?}");
 
-    let borrow1 = rc1.borrow();
-    println!("borrow1 {:?}", &borrow1);
-    println!("borrow1 {:p}", &borrow1);
-    println!("borrow1 {:p}", borrow1.deref());
+        for r_idx in (0..r) {
+            for c_idx in (1..c + 1) {
+                let with_out_curr = if r_idx > 0 { grid[r_idx - 1][c_idx] } else { 0 };
+                let target_col = c_idx as i32 - scores[r_idx];
+                let with_curr = if target_col >= 0 {
+                    grid[r_idx][target_col as usize]
+                } else {
+                    0
+                };
+                grid[r_idx][c_idx] = with_out_curr + with_curr;
+            }
+        }
+        // println!("{grid:?}");
 
-    let borrow2 = rc1.borrow();
-    println!("borrow2 {:?}", &borrow2);
-    println!("borrow2 {:p}", &borrow2);
-    println!("borrow2 {:p}", borrow2.deref());
-
-    // let inner = rc1.into_inner();
-    // println!("inner {:?}", &inner);
-    // println!("inner {:p}", &inner);
+        let res = *grid.last().unwrap().last().unwrap();
+        println!("{res}");
+        res
+    }
 }
