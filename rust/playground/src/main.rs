@@ -16,6 +16,7 @@ async fn something() {
 fn main() {
     assert_eq!(4, Solution::total_combinations(12, vec![2, 3, 7]));
     assert_eq!(1, Solution::total_combinations(2, vec![2, 3, 7]));
+    assert_eq!(1, Solution::total_combinations(30, vec![2, 3, 7]));
 }
 
 struct Solution {}
