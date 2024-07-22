@@ -1,9 +1,10 @@
 # print("\t\tPython Plaground Result")
 
 from typing import List
+
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
-        # ''' Bottom-Up
+
         total_sum = sum(nums)
 
         # if target is out of range, then 0 possibilities
@@ -24,36 +25,6 @@ class Solution:
                 dp[j] += dp[j - num]
 
         return dp[-1]
-
-
-
-        # '''
-
-        ''' Top-Down
-        def rec(level, number, memo) -> int:
-            if (level, number) in memo:
-                return memo[(level, number)]
-            if level == 0:
-                val = 0
-                if nums[0] == number: val += 1
-                if nums[0] == -number: val += 1
-                memo[(level, number)] = val
-                return val
-            total = 0
-            total += rec(level-1, number + nums[level], memo)
-            total += rec(level-1, number - nums[level], memo)
-            memo[(level, number)] = total
-            return total
-
-        return rec(len(nums)-1, target, {})
-        # '''
-
-
-
-
-
-
-
 
 s = Solution()
 assert(1 == s.findTargetSumWays([1], 1))
