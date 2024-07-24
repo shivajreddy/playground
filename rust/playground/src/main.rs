@@ -1,10 +1,6 @@
 #![allow(unused)]
 
-use std::{
-    borrow::{Borrow, BorrowMut},
-    cell::RefCell,
-    rc::Rc,
-};
+use std::{cell::RefCell, rc::Rc};
 
 /*
     [ ] Create ListNode
@@ -57,20 +53,23 @@ impl LinkedList {
     fn push_new_val(&mut self, val: i32) {
         // create a node, and wrap in Rc<RefCell<>>
         let new_node = Node::new(val);
-        let pp = self.tail;
-        let xx = self.tail.unwrap();
-        let yy = xx.get_mut();
-        match self.tail.take() {
-            Some(old_tail) => {
-                let y = old_tail.
-                let bm = old_tail
-                // let bm = old_tail.get_mut();
-                // let n = *old_tail.get_mut();
-            }
-            None => {
-                self.tail = Some(new_node);
-            }
-        }
+
+        let p = Some(new_node);
+        let q = p.unwrap();
+
+        // let mut x = q.borrow_mut();
+        // x.val = 777;
+        //
+        // q.borrow_mut().val = 666;
+
+        let x = self.tail.clone().unwrap();
+
+        // let y = self.tail.take();
+        //
+        // match self.tail.take() {
+        //     Some(node) => {}
+        //     None => {}
+        // }
     }
 
     /*
@@ -96,8 +95,8 @@ impl LinkedList {
 }
 
 fn main() {
-    let mut n1 = Node::new(1, None);
-    let mut n2 = Node::new(2, None);
+    // let mut n1 = Node::new(1, None);
+    // let mut n2 = Node::new(2, None);
 
     // LinkedList
 }

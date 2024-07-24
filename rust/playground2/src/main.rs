@@ -1,25 +1,30 @@
 #![allow(unused)]
-use std::{
-    borrow::{Borrow, BorrowMut},
-    cell::RefCell,
-};
+use std::cell::RefCell;
+use std::collections::HashMap;
+use std::rc::Rc;
 
 fn main() {
-    let val = RefCell::new(42);
+    something()
+}
 
-    let mut_ref = val.borrow_mut();
-    let imm_ref = val.borrow();
+fn something() {
+    let shared_map: Rc<RefCell<HashMap<&str, i32>>> = Rc::new(RefCell::new(HashMap::new()));
+    let mut map = shared_map.borrow_mut();
+    map.insert("africa", 92388);
+    map.insert("india", 188);
 
-    println!("here");
+    println!("{:?}", shared_map);
 
-    let mut v2 = 42;
-    {
-        let mut mut_ref = &mut v2;
+    // let shared_map: Rc<RefCell<_>> = Rc::new(RefCell::new(HashMap::new()));
+    // shared_map.borrow_mut().insert("africa", 92388);
+    // shared_map.borrow_mut().insert("kyoto", 11837);
+    // shared_map.borrow_mut().insert("piccadilly", 11826);
+    // shared_map.borrow_mut().insert("marbles", 38);
+    //
 
-        {
-            // println!("{:p}", &v2);
-        }
-
-        *mut_ref += 1;
-    }
+    let shared_map: Rc<RefCell<HashMap<&str, i32>>> = Rc::new(RefCell::new(HashMap::new()));
+    shared_map.borrow_mut().insert("africa", 92388);
+    shared_map.borrow_mut().insert("kyoto", 11837);
+    shared_map.borrow_mut().insert("piccadilly", 11826);
+    shared_map.borrow_mut().insert("marbles", 38);
 }
