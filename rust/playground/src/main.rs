@@ -1,28 +1,37 @@
 #![allow(unused)]
-fn main() {
-    assert_eq!(4, Solution::find_target_sum_ways(vec![0, 0, 1], 1));
-    assert_eq!(
-        256,
-        Solution::find_target_sum_ways(vec![0, 0, 0, 0, 0, 0, 0, 0, 1], 1)
-    );
+
+use std::cell::Cell;
+
+#[derive(Debug, Clone, Copy)]
+struct Node<'a> {
+    val: i32,
+    next: Option<&'a Node<'a>>,
 }
 
-struct Solution {}
-
-impl Solution {
-    pub fn find_target_sum_ways(nums: Vec<i32>, target: i32) -> i32 {
-        let total_sum: i32 = nums.iter().sum();
-
-        let mut result = 0;
-
-        let mut curr_sum = 0;
-
-        for num in nums.iter() {
-            curr_sum += num;
-            if curr_sum == (total_sum + target) / 2 {
-                result += 1;
-            }
-        }
-        result
+impl<'a> Node<'a> {
+    fn new(val: i32, next: Option<&'a Node<'a>>) -> Node {
+        Node { val, next: None }
     }
 }
+
+fn main() {
+    let mut root: (i32, Option<i32>) = (1, None);
+    let mut n2: (i32, Option<i32>) = (2, None);
+
+    // let n1 = Cell::new(Node::new(10));
+    // let n2 = Cell::new(Node::new(20));
+    // let n3 = Cell::new(Node::new(30));
+
+    // let cell_1 = Cell::new(10);
+    //
+    // let c1_b1 = &cell_1;
+    // println!("c1_b1 {:?}", c1_b1.get());
+    //
+    // let c1_b2 = &cell_1;
+    // println!("c1_b2 {:?}", c1_b2.get());
+    // c1_b2.set(11111);
+    //
+    // println!("c1_b1 {:?}", c1_b1.get());
+}
+
+// create a linked list
