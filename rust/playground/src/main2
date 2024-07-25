@@ -1,0 +1,74 @@
+use std::{cell::RefCell, fmt, rc::Rc};
+// use std::{cell::RefCell, fmt, rc::Rc};
+
+type Link<T> = Option<Rc<RefCell<Node<T>>>>;
+
+struct Node<T> {
+    val: T,
+    next: Link<T>,
+}
+
+impl<T> Node<T> {
+    fn new(val: T) -> Rc<RefCell<Node<T>>> {
+        Rc::new(RefCell::new(Node { val, next: None }))
+    }
+}
+
+struct LinkedList<T> {
+    root: Rc<RefCell<Node<T>>>,
+    tail: Link<T>,
+    size: usize,
+}
+
+impl<T> LinkedList<T> {
+    fn new(head_val: T) -> Self {
+        LinkedList {
+            root: Node::new(head_val),
+            tail: None,
+            size: 0,
+        }
+    }
+
+    fn push(&mut self, val: T) {
+        let new_node = Node { val, next: None };
+        let wrapped_node = Rc::new(RefCell::new(new_node));
+
+        /*
+            tail -> None
+            prev
+            prev -> new_node -> None
+                    tail
+        */
+        // let old_tail = self.tail;
+        // if let Some(old_tail) = self.tail {
+        if let Some(old_tail) = self.tail.take() {
+            old_tail.borrow_mut().next = Some(wrapped_node.clone());
+            self.tail = Some(wrapped_node);
+        } else {
+            // self.root.borrow_mut().next = Some(wrapped_node.clone());
+            self.root.borrow_mut().next = Some(wrapped_node.clone());
+            self.tail = Some(wrapped_node);
+        }
+        self.size += 1;
+    }
+}
+
+fn print_list(linked_list: LinkedList<i32>) {
+    let mut root = Some(linked_list.root);
+
+    while let Some(curr) = root {
+        print!("{} -> ", curr.borrow().val);
+        root = curr.borrow().next.clone();
+    }
+    print!("None\n");
+}
+
+fn main() {
+    let mut ll = LinkedList::<i32>::new(-1);
+
+    let v = vec![10, 20, 30, 40];
+    for num in v {
+        ll.push(num);
+    }
+    print_list(ll);
+}

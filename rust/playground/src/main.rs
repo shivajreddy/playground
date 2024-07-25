@@ -1,55 +1,33 @@
 #![allow(unused)]
+use std::{cell::RefCell, rc::Rc};
 
-use std::{cell::RefCell, fmt, rc::Rc};
-// use std::{cell::RefCell, fmt, rc::Rc};
+type Node<T> = Rc<RefCell<ListNode<T>>>;
 
-type Link<T> = Option<Rc<RefCell<Node<T>>>>;
-
-struct Node<T> {
+struct ListNode<T> {
     val: T,
-    next: Link<T>,
+    next: Option<Node<T>>,
 }
 
-impl<T> Node<T> {
-    fn new(val: T) -> Rc<RefCell<Node<T>>> {
-        Rc::new(RefCell::new(Node { val, next: None }))
+impl<T> ListNode<T> {
+    fn new(val: T) -> Option<Node<T>> {
+        Some(Rc::new(RefCell::new(ListNode { val, next: None })))
     }
 }
 
 struct LinkedList<T> {
-    root: Rc<RefCell<Node<isize>>>,
-    tail: Link<T>,
-    size: usize,
+    root: Option<Node<T>>,
+    tail: Option<Node<T>>,
 }
 
 impl<T> LinkedList<T> {
-    fn new() -> Self {
-        let strong_head = Rc::new(RefCell::new(Node {
-            val: -1,
-            next: None,
-        }));
+    fn new() -> LinkedList<T> {
         LinkedList {
-            root: strong_head,
+            root: None,
             tail: None,
-            size: 0,
         }
     }
 }
 
-fn print_list(linked_list: LinkedList<i32>) {
-    let mut root = Some(linked_list.root);
-
-    while let Some(curr) = root {
-        print!("{} -> ", curr.borrow().val);
-        root = curr.borrow().next.clone();
-    }
-    print!("None\n");
-}
-
 fn main() {
-    let ll = LinkedList::<i32>::new();
-
-    print_list(ll);
-
-    // println!("{}", root.borrow_mut().val);
+    println!("hi");
 }
