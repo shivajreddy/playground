@@ -1,13 +1,16 @@
 fn main() {
-    let mut opt1 = Some(42);
-    let value = opt1.take();
+    let v = vec![Some(42), Some(43), None, Some(44)];
+    // let v = vec![Some(42), Some(43), Some(44)];
 
-    assert_eq!(opt1, None);
-    assert_eq!(value, Some(42));
+    let mut idx = 0;
 
-    let mut opt2: Option<i32> = None;
-    let value = opt2.take();
-
-    assert_eq!(opt2, None);
-    assert_eq!(value, None);
+    while idx < v.len() {
+        if let Some(val) = v[idx] {
+            println!("{}", val);
+            idx += 1;
+        } else {
+            println!("None");
+            idx += 1;
+        }
+    }
 }
