@@ -34,10 +34,10 @@ impl<T> LinkedList<T> {
         let wrapped_node = Rc::new(RefCell::new(new_node));
 
         /*
-            tail -> None
-            prev
-            prev -> new_node -> None
-                    tail
+            prev_tail -> None
+              tail
+            prev_tail -> new_node -> None
+                           tail
         */
         // let old_tail = self.tail;
         // if let Some(old_tail) = self.tail {
