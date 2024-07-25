@@ -1,7 +1,5 @@
 #![allow(unused)]
 
-use std::{cell::RefCell, rc::Rc};
-
 /*
     [ ] Create ListNode
     [ ] Generate LinkedList from vector
@@ -14,89 +12,87 @@ use std::{cell::RefCell, rc::Rc};
           code to show how borrw-check is done compile time when not using RefCell.
 */
 
-type Link = Option<Rc<RefCell<Node>>>;
+use std::{cell::RefCell, rc::Rc};
 
-#[derive(Debug)]
-struct Node {
-    val: i32,
-    next: Link,
+type Link<T> = Option<Rc<RefCell<Node<T>>>>;
+
+struct Node<T> {
+    val: T,
+    prev: Link<T>,
+    next: Link<T>,
 }
 
-impl Node {
-    // wrap the node object in Rc<RefCell<>> cuz this will be
-    // referenced by other nodes
-    fn new(val: i32) -> Rc<RefCell<Self>> {
-        let new_node = Node { val, next: None };
+impl<T> Node<T> {
+    fn new(val: T) -> Rc<RefCell<Node<T>>> {
+        let new_node = Node {
+            val,
+            prev: None,
+            next: None,
+        };
         Rc::new(RefCell::new(new_node))
     }
 }
 
-struct LinkedList {
-    head: Link,
-    tail: Link,
+struct List<T> {
+    head: Link<T>,
+    tail: Link<T>,
     size: usize,
 }
 
-impl LinkedList {
+impl<T> List<T> {
     fn new() -> Self {
-        LinkedList {
+        List {
             head: None,
             tail: None,
             size: 0,
         }
     }
 
-    fn create_from_nums(v: Vec<i32>) -> Link {
-        None
-    }
-
-    fn push_new_val(&mut self, val: i32) {
-        // create a node, and wrap in Rc<RefCell<>>
+    fn push_front(&mut self, val: T) {
         let new_node = Node::new(val);
 
-        let p = Some(new_node);
-        let q = p.unwrap();
+        // let old_head = self.head.take();
+        // match old_head {
+        match self.head.take() {
+            Some(old_head) => {
+                // {
+                //     let mut old_head_inside = old_head.borrow_mut();
+                //     old_head_inside.prev = Some(new_node.clone());
+                // }
+                // {
+                //     let mut new_node_inside = new_node.borrow_mut();
+                //     new_node_inside.next = Some(old_head);
+                // }
+                old_head.borrow_mut().prev = Some(new_node.clone());
+                new_node.borrow_mut().next = Some(old_head);
 
-        // let mut x = q.borrow_mut();
-        // x.val = 777;
-        //
-        // q.borrow_mut().val = 666;
-
-        let x = self.tail.clone().unwrap();
-
-        // let y = self.tail.take();
-        //
-        // match self.tail.take() {
-        //     Some(node) => {}
-        //     None => {}
-        // }
-    }
-
-    /*
-    fn push(&mut self, node: ListNode) {
-        match self.head {
-            None => {
-                self.head = Some(Rc::new(RefCell::new(node)));
-                let n = self.head.unwrap();
-                Rc::clone(&n);
-                let f = n.get_mut();
-                // self.tail = Some(Rc::new(RefCell::new(node)));
+                self.head = Some(new_node);
+                self.size += 1;
             }
-            _ => {}
+            None => {
+                self.head = Some(new_node.clone());
+                self.tail = Some(new_node);
+                self.size += 1;
+            }
         }
     }
-    */
+}
 
-    fn pop(&self) -> Link {
-        None
+fn print_list(list: List<i32>) {
+    let mut curr = list.head;
+    while let Some(rc_node) = curr {
+        let v = rc_node.borrow_mut().val;
+        println!("{v}");
+        curr = rc_node.borrow_mut().next.clone();
     }
-
-    fn print_list(&self) {}
 }
 
 fn main() {
-    // let mut n1 = Node::new(1, None);
-    // let mut n2 = Node::new(2, None);
+    let mut list = List::new();
+    let v1 = vec![10, 20, 30, 40, 50];
 
-    // LinkedList
+    for num in v1.iter() {
+        list.push_front(*num);
+    }
+    print_list(list);
 }
