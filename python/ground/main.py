@@ -8,3 +8,4 @@ class Solution:
 s = Solution()
 assert(1 == s.findTargetSumWays([1], 1))
 
+
