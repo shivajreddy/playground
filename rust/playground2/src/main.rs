@@ -1,15 +1,21 @@
+#![allow(unused)]
+
 fn main() {
-    let mut v = vec![10, 20, 30];
+    // let x;
+    let mut x;
 
-    let x = &v[0];
-    println!("{}", *x);
+    x = 42;
 
-    {
-        let y = &mut v;
-    }
+    println!("x:  {}", x);
 
-    let z = &v[0];
-    println!("{}", *z);
+    let y = &x;
 
-    // println!("{}", *x);
+    let z = &mut x;
+    *z += 1;
+
+    println!("z:  {}", z);
+    println!("*z: {}", *z);
+
+    println!("{}", *y);
+    // println!("x:  {}", x);
 }
