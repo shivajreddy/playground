@@ -1,21 +1,26 @@
 #![allow(unused)]
 
 fn main() {
-    // let x;
-    let mut x;
+    let mut x = 42;
+    let mut y = 52;
 
-    x = 42;
+    // foo(&x, &mut y);
+    foo(&x, &mut x);
+}
 
-    println!("x:  {}", x);
+fn foo(input: &i32, output: &mut i32) {
+    if *input == 1 {
+        *output = 2;
+    }
+    if *input != 1 {
+        *output = 3;
+    }
 
-    let y = &x;
-
-    let z = &mut x;
-    *z += 1;
-
-    println!("z:  {}", z);
-    println!("*z: {}", *z);
-
-    println!("{}", *y);
-    // println!("x:  {}", x);
+    /*
+    if *input == 1 {
+        *output = 2;
+    } else {
+        *output = 3;
+    }
+    // */
 }
