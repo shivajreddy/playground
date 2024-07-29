@@ -1,11 +1,17 @@
 # print("\t\tPython Plaground Result")
 
-from typing import List
+'''
+Delete Operation for Two Strings
+
+
+'''
+
 
 class Solution:
-    pass
+    def minDistance(self, word1: str, word2: str) -> int:
+        return -1
 
 s = Solution()
-assert(1 == s.findTargetSumWays([1], 1))
+assert(2 == s.minDistance("sea", "eat"))
 
 
